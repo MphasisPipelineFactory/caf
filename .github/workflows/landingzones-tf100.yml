@@ -232,34 +232,34 @@ jobs:
 #            --environment ${{ github.run_id }} \
 #            -refresh=false
 
-  foundations_destroy:
-    name: foundations_destroy
-    runs-on: ubuntu-latest
-    if: always()
-    needs: networking200
+#  foundations_destroy:
+#    name: foundations_destroy
+#    runs-on: ubuntu-latest
+#    if: always()
+#    needs: networking200
 
-    strategy:
-      fail-fast: false
-      matrix:
-        random_length: ['5']
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        random_length: ['5']
 
-    container:
-      image: aztfmod/rover:1.5.4-2307.2804
-      options: --user 0
+#    container:
+#      image: aztfmod/rover:1.5.4-2307.2804
+#      options: --user 0
 
-    steps:
-      - uses: actions/checkout@v3
+#    steps:
+#      - uses: actions/checkout@v3
 
-      - name: Login azure
-        run: |
-          az login --service-principal -u '${{ env.ARM_CLIENT_ID }}' -p '${{ env.ARM_CLIENT_SECRET }}' --tenant '${{ env.ARM_TENANT_ID }}'
-          az account set -s  ${{ env.ARM_SUBSCRIPTION_ID }}
+#      - name: Login azure
+#        run: |
+#          az login --service-principal -u '${{ env.ARM_CLIENT_ID }}' -p '${{ env.ARM_CLIENT_SECRET }}' --tenant '${{ env.ARM_TENANT_ID }}'
+#          az account set -s  ${{ env.ARM_SUBSCRIPTION_ID }}
 
-          echo "local user: $(whoami)"
+#          echo "local user: $(whoami)"
 
-      - name: Github Actions permissions workaround
-        run: |
-          git config --global --add safe.directory ${GITHUB_WORKSPACE}
+#      - name: Github Actions permissions workaround
+#        run: |
+#          git config --global --add safe.directory ${GITHUB_WORKSPACE}
 
     #  - name: foundations
     #    run: |
