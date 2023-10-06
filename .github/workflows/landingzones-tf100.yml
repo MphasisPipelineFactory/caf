@@ -120,15 +120,15 @@ jobs:
             -var-folder ${GITHUB_WORKSPACE}/${{ matrix.config_files }} \
             --environment ${{ github.run_id }}
 
-      - name: destroy example
-        run: |
-          /tf/rover/rover.sh -lz ${GITHUB_WORKSPACE}/caf_solution/ -a destroy \
-            -tfstate $(basename ${{ matrix.config_files }}).tfstate \
-            -level level2 \
-            -parallelism=30 \
-            -var-folder ${GITHUB_WORKSPACE}/${{ matrix.config_files }} \
-            --environment ${{ github.run_id }} \
-            -refresh=false
+#      - name: destroy example
+#        run: |
+#          /tf/rover/rover.sh -lz ${GITHUB_WORKSPACE}/caf_solution/ -a destroy \
+#            -tfstate $(basename ${{ matrix.config_files }}).tfstate \
+#            -level level2 \
+#            -parallelism=30 \
+#            -var-folder ${GITHUB_WORKSPACE}/${{ matrix.config_files }} \
+#            --environment ${{ github.run_id }} \
+#            -refresh=false
 
   foundations200:
     name: foundations-200
@@ -222,15 +222,15 @@ jobs:
             -var-folder ${GITHUB_WORKSPACE}/${{ matrix.config_files }} \
             --environment ${{ github.run_id }}
 
-      - name: destroy example
-        run: |
-          /tf/rover/rover.sh -lz ${GITHUB_WORKSPACE}/caf_solution/ -a destroy \
-            -tfstate $(basename ${{ matrix.config_files }}).tfstate \
-            -level level2 \
-            -parallelism=30 \
-            -var-folder ${GITHUB_WORKSPACE}/${{ matrix.config_files }} \
-            --environment ${{ github.run_id }} \
-            -refresh=false
+#      - name: destroy example
+#        run: |
+#          /tf/rover/rover.sh -lz ${GITHUB_WORKSPACE}/caf_solution/ -a destroy \
+#            -tfstate $(basename ${{ matrix.config_files }}).tfstate \
+#            -level level2 \
+#            -parallelism=30 \
+#            -var-folder ${GITHUB_WORKSPACE}/${{ matrix.config_files }} \
+#            --environment ${{ github.run_id }} \
+#            -refresh=false
 
   foundations_destroy:
     name: foundations_destroy
@@ -261,27 +261,27 @@ jobs:
         run: |
           git config --global --add safe.directory ${GITHUB_WORKSPACE}
 
-      - name: foundations
-        run: |
-          /tf/rover/rover.sh -lz ${GITHUB_WORKSPACE}/caf_solution -a destroy \
-            -var-folder ${GITHUB_WORKSPACE}/caf_solution/scenario/foundations/gitops \
-            -tfstate caf_foundations.tfstate \
-            -level level1 \
-            -parallelism=30 \
-            --environment ${{ github.run_id }} \
-            '-var tags={testing_job_id="${{ github.run_id }}"}'
+    #  - name: foundations
+    #    run: |
+    #      /tf/rover/rover.sh -lz ${GITHUB_WORKSPACE}/caf_solution -a destroy \
+    #        -var-folder ${GITHUB_WORKSPACE}/caf_solution/scenario/foundations/gitops \
+    #        -tfstate caf_foundations.tfstate \
+    #        -level level1 \
+    #        -parallelism=30 \
+    #        --environment ${{ github.run_id }} \
+    #        '-var tags={testing_job_id="${{ github.run_id }}"}'
 
-      - name: Remove launchpad
-        run: |
-          /tf/rover/rover.sh -lz ${GITHUB_WORKSPACE}/caf_launchpad -a destroy \
-            -var-folder ${GITHUB_WORKSPACE}/caf_launchpad/scenario/200 \
-            -level level0 \
-            -launchpad \
-            -parallelism=30 \
-            --environment ${{ github.run_id }} \
-            '-var random_length=${{ matrix.random_length }}' \
-            '-var prefix=g${{ github.run_id }}' \
-            '-var tags={testing_job_id="${{ github.run_id }}"}'
+    #  - name: Remove launchpad
+    #    run: |
+    #      /tf/rover/rover.sh -lz ${GITHUB_WORKSPACE}/caf_launchpad -a destroy \
+    #        -var-folder ${GITHUB_WORKSPACE}/caf_launchpad/scenario/200 \
+    #        -level level0 \
+    #        -launchpad \
+    #        -parallelism=30 \
+    #        --environment ${{ github.run_id }} \
+    #        '-var random_length=${{ matrix.random_length }}' \
+    #        '-var prefix=g${{ github.run_id }}' \
+    #        '-var tags={testing_job_id="${{ github.run_id }}"}'
 
 
       - name: Complete purge
